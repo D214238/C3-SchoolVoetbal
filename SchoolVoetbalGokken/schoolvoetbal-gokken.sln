@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32421.90
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "schoolvoetbal-gokken", "SchoolVoetbalGokken\schoolvoetbal-gokken.csproj", "{BAEE81D2-66FB-4A1B-A7E1-2A19FB3BA975}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BAEE81D2-66FB-4A1B-A7E1-2A19FB3BA975}.Debug|x86.ActiveCfg = Debug|x86
+		{BAEE81D2-66FB-4A1B-A7E1-2A19FB3BA975}.Debug|x86.Build.0 = Debug|x86
+		{BAEE81D2-66FB-4A1B-A7E1-2A19FB3BA975}.Release|x86.ActiveCfg = Release|x86
+		{BAEE81D2-66FB-4A1B-A7E1-2A19FB3BA975}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {93619DAC-F695-4940-8A4A-B101EE525E28}
+	EndGlobalSection
+EndGlobal
