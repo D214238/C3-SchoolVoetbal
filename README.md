@@ -1,5 +1,5 @@
 ### Volg deze stappen om het project klaar te maken voor development:
-1. Clone de repo (met github desktop, of git als je fancy wilt doen)
+1. Clone de repo (met github desktop, of git als je fancy wilt doen) naar C:\laragon\www
 2. Maak een nieuwe lege database met de naam c3_schoolvoetbal
 3. Verander .env.example naar .env en vul waardes in voor:
 
