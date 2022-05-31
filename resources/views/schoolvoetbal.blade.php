@@ -8,7 +8,7 @@
 </head>
 <header>
     <img src="{{ URL('img/4S-Logo.png') }}" alt="4S-Logo">
-    <a href="Schoolvoetbal.blade.php">Home</a>
+    <a href="schoolvoetbal.blade.php">Home</a>
     <a href="Wedstrijd.blade.php">Wedstrijden</a>
     <a href="Registeer.blade.php">Registeren</a>
     <a href="Inlog.blade.php">Inloggen</a>
