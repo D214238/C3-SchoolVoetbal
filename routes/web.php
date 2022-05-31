@@ -22,9 +22,14 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/Schoolvoetbal', function () {
-    return view('Schoolvoetbal');
-});
+Route::get('/wedstrijden', function () {
+    return view('wedstrijden');
+})->middleware(['auth'])->name('wedstrijden');
+
+Route::get('/results', function () {
+    return view('results');
+})->middleware(['auth'])->name('results');
+
 
 
 
