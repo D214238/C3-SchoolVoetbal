@@ -30,6 +30,9 @@ Route::get('/results', function () {
     return view('results');
 })->middleware(['auth'])->name('results');
 
+Route::get('/teams', function () {
+    return view('teams');
+})->middleware(['auth'])->name('teams');
 
 
 
