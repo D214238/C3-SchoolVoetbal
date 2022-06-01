@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('games', function (Blueprint $table) {
+        /*Schema::create('games', function (Blueprint $table) {
             $table->id();
             $table->foreignId('team1_id')->references('id')->on('teams');
             $table->foreignId('team2_id')->references('id')->on('teams');
@@ -22,7 +22,7 @@ return new class extends Migration
             $table->foreignId('field_id')->references('id')->on('fields');
             $table->foreignId('referee_id')->references('id')->on('users');
             $table->timestamps();
-        });
+        });*/
     }
 
     /**
