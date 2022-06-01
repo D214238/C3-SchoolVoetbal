@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->boolean('admin');
-            $table->foreign('team_id')->references('id')->on('teams');
+            $table->string('admin');
+            $table->foreignId('team_id')->references('id')->on('teams');
             $table->rememberToken();
             $table->timestamps();
         });
