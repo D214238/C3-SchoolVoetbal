@@ -15,17 +15,13 @@ return new class extends Migration
     {
         Schema::create('games', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('team1_id')->references('id')->on('teams');
-            $table->foreignId('team2_id')->references('id')->on('teams');
-            $table->int('team1_score')->nullable();
-            $table->int('team2_score')->nullable();
-            $table->foreignId('field_id')->references('id')->on('fields');
+            $table->integer('team1_score')->nullable();
+            $table->integer('team2_score')->nullable();
             $table->integer('tournament_id');
             $table->boolean('finished')->default(false);
             $table->boolean('is_playing')->default(false);
             $table->date('start_date')->nullable();
             $table->time('start_time')->nullable();
-            //$table->foreignId('referee_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

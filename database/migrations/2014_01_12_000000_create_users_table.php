@@ -20,7 +20,6 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->boolean('admin')->default(false);
-            $table->foreignId('team_id')->nullable()->references('id')->on('teams');
             $table->rememberToken();
             $table->timestamps();
         });
