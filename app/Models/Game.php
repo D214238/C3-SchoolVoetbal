@@ -32,4 +32,19 @@ class Game extends Model
         return $this->belongsTo(Tournament::class);
     }
 
+    public function scopeToday($query)
+    {
+        return $query->whereRelation('tournament', 'start_date', Carbon::today());
+    }
+
+    public function scopeFinished($query)
+    {
+        return $query->where('finished', true);
+    }
+
+    public function scopePlaying($query)
+    {
+        return $query->where('is_playing', true);
+    }
+
 }

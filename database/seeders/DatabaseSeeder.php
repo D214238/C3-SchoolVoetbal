@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\Field;
 use App\Models\Team;
 use App\Models\Game;
+use App\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -32,9 +33,11 @@ class DatabaseSeeder extends Seeder
         Team::truncate();
         User::truncate();
         Tournament::truncate();
+        Role::truncate();
 
         $this->call([
-            FieldSeeder::class
+            FieldSeeder::class,
+            RoleSeeder::class
         ]);
 
         //create admin account
