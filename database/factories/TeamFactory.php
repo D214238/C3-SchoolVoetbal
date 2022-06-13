@@ -23,7 +23,7 @@ class TeamFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->domainWord(),
+            'name' => $this->faker->unique()->domainWord(),
             'creator_id' => 0
         ];
     }

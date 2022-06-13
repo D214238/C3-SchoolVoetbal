@@ -83,26 +83,71 @@
 /*---[ Main:Global ]---*/
 .main-grid{
     height: 86vh;
+    width: 100vw;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     gap: 35px;
     padding: 35px;
+    grid-template-areas:
+        "dash-teams dash-image dash-image"
+        "dash-tournament dash-tournament dash-team";
 }
 /*---[ Main:User Dashboard + Components ]---*/
-.table table, .table th, .table tr, .table td{
+
+.dash-teams{
+    grid-area: dash-teams;
+}
+
+.dash-image{
+    width: 100%;
+    height: 100%;
+    grid-area: dash-image;
+    overflow: hidden;
+}
+
+.dash-tournament{
+    grid-area: dash-tournament;
+}
+
+.dash-team{
+    grid-area: dash-team;
+}
+
+.main-table table, .main-table th, .main-table tr, .main-table td{
     border: 1px solid black;
     text-align: left;
 }
 
-.table th, .table td{
-    padding-left: 5px;
+.main-table th, .main-table td{
+    padding-left: 10px;
 }
 
-.table{
+.main-table{
     width: 100%;
     height: 100%;
 }
+
+.main-table .nopad{
+    padding-left: 0 ;
+}
+.toplay-table{
+    width: 100%;
+}
+.playingnow-table{
+    width: 100%;
+}
+.played-table{
+    width:100%;
+}
+
+.names-table{
+    width: 100%;
+    height: 100%;
+}
+
+
+
 /*===[ End Main ]===============================================================*/
 /*::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
 /*===[ Footer ]=================================================================*/

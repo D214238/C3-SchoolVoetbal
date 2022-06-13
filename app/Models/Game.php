@@ -37,14 +37,15 @@ class Game extends Model
         return $query->whereRelation('tournament', 'start_date', Carbon::today());
     }
 
-    public function scopeFinished($query)
-    {
-        return $query->where('finished', true);
-    }
-
-    public function scopePlaying($query)
-    {
-        return $query->where('is_playing', true);
-    }
+    //Does work but quite useless
+//    public function scopeFinished($query, bool $answer)
+//    {
+//        return $query->where('finished', $answer);
+//    }
+//
+//    public function scopePlaying($query, bool $answer)
+//    {
+//        return $query->where('is_playing', $answer);
+//    }
 
 }

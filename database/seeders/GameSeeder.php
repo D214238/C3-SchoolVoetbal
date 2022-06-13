@@ -41,13 +41,15 @@ class GameSeeder extends Seeder
 
         for($i = 1; $i < $latestTeamId -1; $i++){
             for($ii = $i+1; $ii < $latestTeamId; $ii++) {
-                $finished = ($genCounter < $gamesGenerated / 2 && $latestTournamentId == 1 || $latestTournamentId != 1) ? 1 : 0;
+                $finished = ($genCounter < $gamesGenerated / 2 && $latestTournamentId == 1 || $latestTournamentId != 1) ? true : false;
+                $isPlaying = ($genCounter == $gamesGenerated / 2 && $latestTournamentId == 1) ? true : false;
                 Game::factory()->create([
                     'team1_id' => $i,
                     'team2_id' => $ii,
                     'tournament_id' => $latestTournamentId,
                     'start_time' => $time,
-                    'finished' => $finished
+                    'finished' => $finished,
+                    'is_playing' => $isPlaying
                 ]);
                 $time = $time->addMinutes(15);
                 $genCounter = $genCounter+1;

@@ -1,3 +1,3 @@
 <x-layout.main>
-    Admin Matches
+    Empty
 </x-layout.main>

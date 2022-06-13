@@ -1,16 +1,16 @@
 @php
 if(Auth::user()->is_admin == true){
-    $linkHome = route('admin.dashboard');
-    $linkTournaments = route('admin.tournaments');
-    $linkMatches = route('admin.matches');
+    $linkHome = route('admin.dashboard.index');
+    // $linkTournaments = route('admin.tournaments.index'); // TODO implement when i have resource controller for admin dashboard
+    $linkgames = route('admin.games');
     $linkTeams = route('admin.teams');
     $linkUser = route('admin.users'); // TODO implement extra link in adin navigation header
     $logo = asset('img/4S-Logo-Admin.svg');
 } else{
-    $linkHome = route('dashboard');
-    $linkTournaments = route('tournaments');
-    $linkMatches = route('matches');
-    $linkTeams = route('teams');
+    $linkHome = route('dashboard.index');
+    $linkTournaments = route('tournaments.index');
+    $linkgames = route('games.index');
+    $linkTeams = route('teams.index');
     $logo = asset('img/4S-Logo.svg');
 }
 @endphp
@@ -20,7 +20,7 @@ if(Auth::user()->is_admin == true){
     <div class="nav-links">
         <a href="{{ $linkHome }}">Dashboard</a>
         <a href="{{ $linkTournaments }}">Toernooien</a>
-        <a href="{{ $linkMatches }}">Wedstrijden</a>
+        <a href="{{ $linkgames }}">Wedstrijden</a>
         <a href="{{ $linkTeams }}">Teams</a>
     </div>
     <form method="POST" action="{{ route('logout') }}">

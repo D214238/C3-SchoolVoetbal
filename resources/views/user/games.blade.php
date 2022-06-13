@@ -1,3 +1,3 @@
 <x-layout.main>
-    User Matches
+    User games
 </x-layout.main>

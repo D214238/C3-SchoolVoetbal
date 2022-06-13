@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Auth;
 
 //controllers
 use App\Http\Controllers\User\UserDashController;
+use App\Http\Controllers\User\TournamentController;
+use App\Http\Controllers\User\TeamController;
+use App\Http\Controllers\User\GameController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,28 +25,21 @@ require __DIR__.'/auth.php';
 //Guest
 Route::get('/', function () {
     if(Auth::user() == null) {return view('welcome');}
-    if (Auth::user()->is_admin == false) {return redirect()->route('dashboard');}
-    elseif (Auth::user()->is_admin == true) {return redirect()->route('admin.dashboard');}
+    if (Auth::user()->is_admin == false) {return redirect()->route('dashboard.index');}
+    elseif (Auth::user()->is_admin == true) {return redirect()->route('admin.dashboard.index');}
     else {return view('welcome');}
 })->name('home');
 
 //User
 Route::group(['middleware' => ['auth', 'access:user']], function() {
-    Route::get('/dashboard', [UserDashController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [UserDashController::class, 'index'])->name('dashboard.index');
 
-    Route::get('/tournaments', function () {
-        return view('user/tournaments');
-    })->name('tournaments');
-
-    Route::get('/matches', function () {
-        return view('user/matches');
-    })->name('matches');
-
-    Route::get('/teams', function () {
-        return view('user/teams');
-    })->name('teams');
+    Route::resources([
+        'tournaments' => TournamentController::class,
+        'teams' => TeamController::class,
+        'games' => GameController::class
+    ]);
 });
-
 
 //Admin
 Route::group(['prefix' => 'admin', 'middleware' => ['auth','access:admin']], function() {
@@ -55,9 +51,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','access:admin']], fun
         return view('admin/tournaments');
     })->name('admin.tournaments');
 
-    Route::get('/matches', function () {
-        return view('admin/matches');
-    })->name('admin.matches');
+    Route::get('/games', function () {
+        return view('admin/games');
+    })->name('admin.games');
 
     Route::get('/teams', function () {
         return view('admin/teams');

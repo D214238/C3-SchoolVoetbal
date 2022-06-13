@@ -52,15 +52,19 @@ class UserDashController extends Controller
     }
 
     public function index(){
+        $user = User::where('id', Auth::user()->id)->first();
         $topTeams = $this->calcBestTeams();
         $tournament = Tournament::with('games')->where('start_date', Carbon::today())->first();
-        $members = User::where('id', Auth::id())->first()->team()->first();
+        $team = User::where('id', Auth::id())->first()->team()->first();
+        $members = $team;
         $members = ($members != null) ? $members->members()->get() : null;
 
         return view('user.dashboard', [
+            'user' => $user,
             'topTeams' => $topTeams,
-            'tourToday' => $tournament,
-            'myTeam' => $members
+            'tournament' => $tournament,
+            'team' => $team,
+            'teamMembers' => $members
         ]);
     }
 }
