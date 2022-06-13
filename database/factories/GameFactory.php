@@ -17,7 +17,7 @@ class GameFactory extends Factory
      */
 
     protected $model = Game::class;
-     
+
     public function definition()
     {
         return [
@@ -26,8 +26,7 @@ class GameFactory extends Factory
             'field_id' => $this->faker->numberBetween(1, 6),
             'team1_score' => $this->faker->randomDigit(),
             'team2_score' => $this->faker->randomDigit(),
-            'tournament_id' => $this->faker->randomDigit(),
-            'start_date' => $this->faker->date(),
+            'tournament_id' => 0,
             'start_time' => $this->faker->time()
         ];
     }

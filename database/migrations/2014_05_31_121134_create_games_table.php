@@ -17,11 +17,9 @@ return new class extends Migration
             $table->id();
             $table->integer('team1_score')->nullable();
             $table->integer('team2_score')->nullable();
-            $table->integer('tournament_id');
             $table->boolean('finished')->default(false);
             $table->boolean('is_playing')->default(false);
-            $table->date('start_date')->nullable();
-            $table->time('start_time')->nullable();
+            $table->time('start_time');
             $table->timestamps();
         });
     }

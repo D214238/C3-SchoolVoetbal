@@ -1,18 +1,18 @@
-<x-guest-layout>
-    <x-auth-card>
+<x-layout.main>
+    <x-auth.auth-card>
         <x-slot name="logo">
             <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+                <x-auth.application-logo class="w-20 h-20 fill-current text-gray-500" />
             </a>
         </x-slot>
 
         <div class="mb-4 text-sm text-gray-600">
-            {{ __('Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}
+            Bedankt voor het registreren! Voordat we starten, zou je jou e-mail adres kunnen bevestigen door te klikken op de link in de mail die we je gestuurd hebben. Als je geen e-mail hebt ontvangen sturen we er graag nog een.
         </div>
 
         @if (session('status') == 'verification-link-sent')
             <div class="mb-4 font-medium text-sm text-green-600">
-                {{ __('A new verification link has been sent to the email address you provided during registration.') }}
+                Een nieuwe verificatielink is gestuurd naar het e-mail adres dat je opgegeven hebt tijdens het registreren.
             </div>
         @endif
 
@@ -21,9 +21,9 @@
                 @csrf
 
                 <div>
-                    <x-button>
-                        {{ __('Resend Verification Email') }}
-                    </x-button>
+                    <x-auth.button>
+                        Opnieuw verificatielink sturen
+                    </x-auth.button>
                 </div>
             </form>
 
@@ -31,9 +31,9 @@
                 @csrf
 
                 <button type="submit" class="underline text-sm text-gray-600 hover:text-gray-900">
-                    {{ __('Log Out') }}
+                    Uitloggen
                 </button>
             </form>
         </div>
-    </x-auth-card>
-</x-guest-layout>
+    </x-auth.auth-card>
+</x-layout.main>

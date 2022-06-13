@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Tournament;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -30,6 +31,7 @@ class DatabaseSeeder extends Seeder
         Game::truncate();
         Team::truncate();
         User::truncate();
+        Tournament::truncate();
 
         $this->call([
             FieldSeeder::class
@@ -43,6 +45,14 @@ class DatabaseSeeder extends Seeder
             'is_admin' => true
         ]);
 
+        //create regular user
+        User::factory()->create([
+            'name' => 'user',
+            'email' => 'user@example.com',
+            'team_id' => null
+        ]);
+
+        //tournament is automatically created when games are created
         for($i=0; $i<$datasetSize; $i++) {
             $this->call([
                 TeamSeeder::class,
@@ -50,9 +60,13 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        $this->call([
-            GameSeeder::class
-        ]);
+        for($i=0; $i<$datasetSize; $i++) {
+            $this->call([
+                GameSeeder::class
+            ]);
+        }
+
+
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }

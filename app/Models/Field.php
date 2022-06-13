@@ -9,13 +9,13 @@ class Field extends Model
 {
     use HasFactory;
 
-    public function allGames()
+    public function games()
     {
         return $this->hasMany(Game::class);
     }
 
-    public function games()
+    public function gamesToday()
     {
-        return $this->hasMany(Game::class)->whereDate('start_date', Carbon::today());
+        return $this->hasMany(Game::class);
     }
 }
