@@ -1,14 +1,14 @@
 @props(['topTeams'])
-<a href="{{ route('teams.index') }}" {{ $attributes->merge(['class' => 'dash-teams']) }}>
+<a href="{{ route('teams.index') }}" {{ $attributes->merge() }}>
     <table class="main-table">
         <thead>
             <tr class="table-title">
-                <th colspan="3">Top 5 teams</th>
+                <th colspan="7" class="align-left">Top 5 teams</th>
             </tr>
             <tr class="table-header">
-                <th class="teams-tableheading-1">Nummer</th>
-                <th class="teams-tableheading-2">Teamnaam</th>
-                <th class="teams-tableheading-3">Goals</th>
+                <th class="teams-tableheading-1">Nmr</th>
+                <th class="teams-tableheading-2 align-left" colspan="4">Teamnaam</th>
+                <th class="teams-tableheading-3" colspan="2">Goals</th>
             </tr>
         </thead>
         <tbody>
@@ -16,8 +16,8 @@
                 @if($i < count($topTeams))
                     <tr>
                         <td>{{ $i + 1 }}</td>
-                        <td>{{ $topTeams[$i]['name'] }}</td>
-                        <td>{{ $topTeams[$i]['goals'] }}</td>
+                        <td class="align-left" colspan="4">{{ $topTeams[$i]['name'] }}</td>
+                        <td colspan="2">{{ $topTeams[$i]['goals'] }}</td>
                     </tr>
                 @else
                     <tr>

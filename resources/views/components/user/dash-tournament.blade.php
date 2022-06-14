@@ -1,91 +1,85 @@
 @props(['tournament'])
-<a href="{{ route('tournaments.show', $tournament['id']) }}" {{ $attributes->merge(['class' => 'dash-tournament']) }}>
+<a href="{{ route('tournaments.show', $tournament['id']) }}" {{ $attributes->merge() }}>
     <table class="main-table">
         <thead>
             <tr class="table-title">
-                <th>Huidige Tournament</th>
-                <th>{{ $tournament['start_date'] }}</th>
+                <th class="align-left tour-title" colspan="4">Huidige Toernooi</th>
+                <th></th>
+                <th class="tour-date" colspan="1">{{ $tournament['start_date'] }}</th>
             </tr>
         </thead>
-        <thead>
-            <tr>
-                <td class="nopad" colspan="2">
-                    @if(count($tournament['games']->where('is_playing', true)) >= 1)
-                        <table class="playingnow-table">
-                            <thead>
-                            <tr class="table-header"><th colspan="4">Speelt nu</th></tr>
-                            </thead>
-                            <tbody>
-                                @foreach($tournament['games']->where('is_playing', true) as $game)
-                                    <tr>
-                                        <td>{{ $game['team1']['name'] }}</td>
-                                        <td>{{ $game['team2']['name'] }}</td>
-                                        <td>{{ $game['team1_score'] }}</td>
-                                        <td>{{ $game['team2_score'] }}</td>
-                                    </tr>
-                             @endforeach
-                            </tbody>
-                        </table>
-                    @endif
-                </td>
+        @if(count($tournament['games']->where('is_playing', true)) >= 1)
+        <tbody>
+            <tr class="table-header">
+                <th colspan="6" class="align-left">Speelt nu</th>
             </tr>
-        </thead>
+            @foreach($tournament['games']->where('is_playing', true) as $game)
+                <tr>
+                    <td class="align-left spread" colspan="1">{{ $game['team1']['name'] }}</td>
+                    <td colspan="2">vs</td>
+                    <td>{{ $game['team2']['name'] }}</td>
+                    <td class="align-left">Actuele tussenstand:</td>
+                    <td>{{ $game['team1_score'] }}  -  {{ $game['team2_score'] }}</td>
+                </tr>
+            @endforeach
+        </tbody>
+        @endif
         <thead>
             <tr class="table-header">
-                <th>Afgespeeld</th>
-                <th>Moet nog spelen</th>
+                <th class="align-left table-played-title" colspan="4">Afgespeeld</th>
+                <th class="align-left" colspan="2">Moet nog spelen</th>
             </tr>
         </thead>
         <tbody>
         <tr>
-            <td class="nopad">
-                <table class="played-table">
+            <td class="nopad" colspan="4">
+                <table class="played-table inner-table">
                     <thead>
-                    <tr>
-                        <td>Team 1</td>
-                        <td>Team 2</td>
-                        <td>Score 1</td>
-                        <td>Score 2</td>
+                    <tr class="table-subheader">
+                        <th class="align-left">Team 1</th>
+                        <th class="align-left">Team 2</th>
+                        <th>Score 1</th>
+                        <th>Score 2</th>
                     </tr>
                     </thead>
                     <tbody>
                         @foreach($tournament['games']->where('finished', true)->take(5) as $game)
                             <tr>
-                                <td>{{ $game['team1']['name'] }}</td>
-                                <td>{{ $game['team2']['name'] }}</td>
+                                <td class="align-left">{{ $game['team1']['name'] }}</td>
+                                <td class="align-left">{{ $game['team2']['name'] }}</td>
                                 <td>{{ $game['team1_score'] }}</td>
                                 <td>{{ $game['team2_score'] }}</td>
                             </tr>
                         @endforeach
                         <tr>
-                            <td>...</td>
-                            <td>...</td>
+                            <td class="align-left">...</td>
+                            <td class="align-left">...</td>
                             <td>...</td>
                             <td>...</td>
                         </tr>
                     </tbody>
                 </table>
             </td>
-            <td class="nopad">
-                <table class="toplay-table">
+            <td class="nopad" colspan="2">
+                <table class="toplay-table inner-table">
                     <thead>
-                    <tr>
-                        <td>Team 1</td>
-                        <td>Team 2</td>
-                        <td>Start tijd</td>
+                    <tr class="table-subheader">
+                        <th class="align-left">Team 1</th>
+                        <th class="align-left">Team 2</th>
+                        <th>Start tijd</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($tournament['games']->where('finished', false)->take(5) as $game)
                         <tr>
-                            <td>{{ $game['team1']['name'] }}</td>
-                            <td>{{ $game['team2']['name'] }}</td>
+                            <td class="align-left">{{ $game['team1']['name'] }}</td>
+                            <td class="align-left">{{ $game['team2']['name'] }}</td>
                             <td>{{ date('H:i', strtotime($game['start_time'])) }}</td>
                         </tr>
                     @endforeach
                     <tr>
-                        <td>...</td>
-                        <td>...</td>
+                        <td class="align-left">...</td>
+                        <td class="align-left">...</td>
                         <td>...</td>
                     </tr>
                     </tbody>

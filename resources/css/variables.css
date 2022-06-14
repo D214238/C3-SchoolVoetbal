@@ -13,10 +13,13 @@
 
     --dark-gray: #595959;
     --middle-gray: #a5a5a5;
+    --table-line: #BFBFBF;
     --light-gray: #d8d8d8;
 
     --bg-color: #f2f2f2;
     --white: #ffffff;
+
+    --radius: 5px;
 }
 
 .bg-main{
