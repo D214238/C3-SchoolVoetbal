@@ -59,5 +59,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','access:admin']], fun
         return view('admin/teams');
     })->name('admin.teams');
 
+    Route::get('/teams', function () {
+        return view('layout/teams');
+    })->name('layout.teams');
+
 });
 
