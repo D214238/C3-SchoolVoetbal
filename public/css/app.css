@@ -1159,7 +1159,6 @@ select {
 
     --dark-gray: #595959;
     --middle-gray: #a5a5a5;
-    --table-line: #BFBFBF;
     --light-gray: #d8d8d8;
 
     --bg-color: #f2f2f2;
@@ -1264,8 +1263,12 @@ select {
 .dash-image{
     width: 100%;
     height: 100%;
-    grid-area: dash-image;
     overflow: hidden;
+    grid-area: dash-image;
+}
+.dash-image img{
+    width: 100%;
+    height: 100%;
     -o-object-fit: cover;
        object-fit: cover;
     -o-object-position: 50% 77%;
@@ -1361,10 +1364,15 @@ table, th, tr, td{
     color: var(--bg-color);
     height: 5vh;
 }
-.table-title th:first-child{
+.admin-table-title{
+    background-color: var(--middle-red);
+    color: var(--bg-color);
+    height: 5vh;
+}
+.table-title th:first-child, .admin-table-title th:first-child{
     border-top-left-radius: var(--radius);
 }
-.table-title th:last-child{
+.table-title th:last-child, .admin-table-title th:last-child{
     border-top-right-radius: var(--radius);
 }
 tr:nth-child(even){

@@ -1,13 +1,15 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
 //controllers
 use App\Http\Controllers\User\UserDashController;
-use App\Http\Controllers\User\TournamentController;
-use App\Http\Controllers\User\TeamController;
-use App\Http\Controllers\User\GameController;
+use App\Http\Controllers\Admin\AdminDashController;
+use App\Http\Controllers\TournamentController;
+use App\Http\Controllers\TeamController;
+use App\Http\Controllers\GameController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,40 +26,29 @@ require __DIR__.'/auth.php';
 
 //Guest
 Route::get('/', function () {
-    if(Auth::user() == null) {return view('welcome');}
-    if (Auth::user()->is_admin == false) {return redirect()->route('dashboard.index');}
-    elseif (Auth::user()->is_admin == true) {return redirect()->route('admin.dashboard.index');}
-    else {return view('welcome');}
+    if(Auth::user() == null) {return view('public.welcome');}
+    if (Auth::user()->is('user')) {return redirect()->route('dashboard.index');}
+    elseif (Auth::user()->is('admin')) {return redirect()->route('admin.dashboard.index');}
+    else {return view('public.welcome');}
 })->name('home');
 
 //User
-Route::group(['middleware' => ['auth', 'access:user']], function() {
+Route::group(['middleware' => ['auth', 'is:user']], function() {
     Route::get('/dashboard', [UserDashController::class, 'index'])->name('dashboard.index');
-
-    Route::resources([
-        'tournaments' => TournamentController::class,
-        'teams' => TeamController::class,
-        'games' => GameController::class
-    ]);
 });
 
 //Admin
-Route::group(['prefix' => 'admin', 'middleware' => ['auth','access:admin']], function() {
-    Route::get('/dashboard', function () {
-        return view('admin/dashboard');
-    })->name('admin.dashboard');
+Route::group(['prefix' => 'admin', 'middleware' => ['auth','is:admin']], function() {
+    Route::get('/dashboard', [AdminDashController::class, 'index'])->name('admin.dashboard.index');
+});
 
-    Route::get('/tournaments', function () {
-        return view('admin/tournaments');
-    })->name('admin.tournaments');
-
-    Route::get('/games', function () {
-        return view('admin/games');
-    })->name('admin.games');
-
-    Route::get('/teams', function () {
-        return view('admin/teams');
-    })->name('admin.teams');
-
+//resource controllers
+Route::group(['middleware' => 'auth'], function() {
+    Route::resources([
+        'tournaments' => TournamentController::class,
+        'teams' => TeamController::class,
+        'games' => GameController::class,
+        'users' => UserController::class
+    ]);
 });
 

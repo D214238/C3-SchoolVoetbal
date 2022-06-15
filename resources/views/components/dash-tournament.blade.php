@@ -2,7 +2,10 @@
 <a href="{{ route('tournaments.show', $tournament['id']) }}" {{ $attributes->merge() }}>
     <table class="main-table">
         <thead>
-            <tr class="table-title">
+            <tr @class([
+        'table-title' => Auth::user()->is('user'),
+        'admin-table-title' => Auth::user()->is('admin')
+        ])>
                 <th class="align-left tour-title" colspan="4">Huidige Toernooi</th>
                 <th></th>
                 <th class="tour-date" colspan="1">{{ $tournament['start_date'] }}</th>

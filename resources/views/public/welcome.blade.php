@@ -8,11 +8,11 @@
         <div class="card-welcome">
             <h1 class="welcome-message">Welkom, selecteer hieronder of je wilt inloggen met een bestaand account of je een nieuw account wilt registreren.</h1>
             @auth
-                @if(Auth::user()->is_admin == true)
+                @is('admin')
                     <a href="{{ route('admin-dashboard') }}">DASHBOARD</a>
-                @else
+                @elseis('user')
                     <a href="{{ route('dashboard') }}">DASHBOARD</a>
-                @endif
+                @endis
             @endauth
             @guest
                 <div id="welcome-links">

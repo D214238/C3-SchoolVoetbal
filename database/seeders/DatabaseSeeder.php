@@ -45,7 +45,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'admin',
             'email' => 'admin@example.com',
             'team_id' => null,
-            'is_admin' => true
+            'role_id' => 3
         ]);
 
         //create regular user

@@ -2,7 +2,13 @@
 <a href="{{ route('teams.show', $team['id']) }}" {{ $attributes->merge() }}>
     <table class="main-table">
         <thead>
-        <tr class="table-title"><th class="align-left">Mijn Team</th><th class="table-teamname">{{ $team['name'] }}</th></tr>
+        <tr @class([
+        'table-title' => Auth::user()->is('user'),
+        'admin-table-title' => Auth::user()->is('admin')
+        ])>
+            <th class="align-left">Mijn Team</th>
+            <th class="table-teamname">{{ $team['name'] }}</th>
+        </tr>
         </thead>
         <tbody>
         <tr>

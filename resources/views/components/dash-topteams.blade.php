@@ -2,7 +2,10 @@
 <a href="{{ route('teams.index') }}" {{ $attributes->merge() }}>
     <table class="main-table">
         <thead>
-            <tr class="table-title">
+            <tr @class([
+        'table-title' => Auth::user()->is('user'),
+        'admin-table-title' => Auth::user()->is('admin')
+        ])>
                 <th colspan="7" class="align-left">Top 5 teams</th>
             </tr>
             <tr class="table-header">

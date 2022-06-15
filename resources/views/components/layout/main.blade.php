@@ -6,19 +6,20 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     @php
-    $urlLS = request()->segment(count(request()->segments()));
-    $urlSTLS = request()->segment(count(request()->segments()) - 1);
+        $urlLS = request()->segment(count(request()->segments()));
+        $urlSTLS = request()->segment(count(request()->segments()) - 1);
 
-    if (!is_numeric($urlLS)) {
-        $title = $urlLS;
-    }elseif (is_numeric($urlLS) && !is_numeric($urlSTLS)) {
-        $title = $urlSTLS;
-    }else {
-        $title = 'C3-SchoolVoetval';
-    }
+        if (!is_numeric($urlLS)) {
+            $title = $urlLS;
+        }elseif (is_numeric($urlLS) && !is_numeric($urlSTLS)) {
+            $title = $urlSTLS;
+        }else {
+            $title = 'C3-SchoolVoetval';
+        }
     @endphp
 
     <title>{{ $title }}</title>
+    <link rel="icon" href="{{ asset('img/4S-Logo.svg') }}" />
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
@@ -30,16 +31,16 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
 <body class="font-sans antialiased">
-    <div class="body-wrapper">
-        @auth
-            @include('components.navigation')
-        @endauth
-        <main @class(['main-content', 'main-grid' => Auth::check()])>
-            {{ $slot }}
-        </main>
-        @auth
-            @include('components.footer')
-        @endauth
-    </div>
+<div class="body-wrapper">
+    @auth
+        @include('components.main.navigation')
+    @endauth
+    <main @class(['main-content', 'main-grid' => Auth::check()])>
+        {{ $slot }}
+    </main>
+    @auth
+        @include('components.main.footer')
+    @endauth
+</div>
 </body>
 </html>

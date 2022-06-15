@@ -50,4 +50,14 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Role::class);
     }
+
+    public function is($abilities, $arguments = [])
+    {
+        return $this->can($abilities, $arguments = []);
+    }
+
+    public function are($abilities, $arguments = [])
+    {
+        return $this->canAny($abilities, $arguments = []);
+    }
 }
