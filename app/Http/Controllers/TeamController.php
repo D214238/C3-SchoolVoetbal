@@ -4,17 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Team;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TeamController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        $teams = Team::with(['creator', 'members'])->get();
+        return view('user.teams.teams', [
+            'teams' => $teams
+        ]);
     }
 
     /**
@@ -38,26 +38,20 @@ class TeamController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Team  $team
-     * @return \Illuminate\Http\Response
-     */
     public function show(Team $team)
     {
-        //
+        return view('user.teams.team', [
+            'team' => $team
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Team  $team
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Team $team)
     {
-        //
+        if(Auth::user()->is('admin') || $team->creator->first()->id == Auth::user()->id) {
+            return view('user.teams.edit', [
+                'team' => $team
+            ]);
+        } else {abort(401);}
     }
 
     /**

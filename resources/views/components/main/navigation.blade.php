@@ -1,22 +1,14 @@
 <nav class="nav">
     <a href="{{ route('home') }}">
-        @is('user')
-        <img src="{{ asset('img/4S-Logo.svg') }}" alt="Logo of 4s" class="nav-logo"/>
-        @elseis('admin')
-        <img src="{{ asset('img/4S-Logo-Admin.svg') }}" alt="Logo of 4s" class="nav-logo"/>
-        @endis
+        <img src="{{ $logo }}" alt="Logo of 4s" class="nav-logo"/>
     </a>
     <div class="nav-links">
-        @is('user')
-        <a href="{{ route('dashboard.index') }}">Dashboard</a>
-        @elseis('admin')
-        <a href="{{ route('admin.dashboard.index') }}">Dashboard</a>
-        @endis
-        <a href="{{ route('tournaments.index') }}">Toernooien</a>
-        <a href="{{ route('games.index') }}">Wedstrijden</a>
-        <a href="{{ route('teams.index') }}">Teams</a>
+        <a href="{{ $linkDasboard }}">Dashboard</a>
+        <a href="{{ $linkTournaments }}">Toernooien</a>
+        <a href="{{ $linkGames }}">Wedstrijden</a>
+        <a href="{{ $linkTeams }}">Teams</a>
         @is('admin')
-        <a href="{{ route('users.index') }}">Gebruikers</a>
+        <a href="{{ $linkUsers }}">Gebruikers</a>
         @endis
     </div>
     <form method="POST" action="{{ route('logout') }}">

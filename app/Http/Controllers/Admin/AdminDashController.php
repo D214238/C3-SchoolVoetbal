@@ -54,11 +54,13 @@ class AdminDashController extends Controller
         $user = User::where('id', Auth::user()->id)->first();
         $topTeams = $this->calcBestTeams();
         $tournament = Tournament::with('games')->where('start_date', Carbon::today())->first();
+        $users = User::with('team')->latest()->take(10)->orderByDesc('id')->get();
 
         return view('admin.dashboard', [
             'user' => $user,
             'topTeams' => $topTeams,
-            'tournament' => $tournament
+            'tournament' => $tournament,
+            'latestUsers' => $users
         ]);
     }
 }

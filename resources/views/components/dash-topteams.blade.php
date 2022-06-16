@@ -1,5 +1,5 @@
-@props(['topTeams'])
-<a href="{{ route('teams.index') }}" {{ $attributes->merge() }}>
+@props(['topTeams', 'routeName'])
+<a href="{{ route($routeName) }}" {{ $attributes->merge() }}>
     <table class="main-table">
         <thead>
             <tr @class([

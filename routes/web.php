@@ -42,13 +42,23 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','is:admin']], functio
     Route::get('/dashboard', [AdminDashController::class, 'index'])->name('admin.dashboard.index');
 });
 
-//resource controllers
-Route::group(['middleware' => 'auth'], function() {
+//resource controllers users
+Route::group(['middleware' => ['auth','is:user']], function() {
     Route::resources([
         'tournaments' => TournamentController::class,
         'teams' => TeamController::class,
         'games' => GameController::class,
         'users' => UserController::class
     ]);
+});
+
+//resource controllers admins (more for aesthetic purposes. gives nicer url)
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'is:admin']], function() {
+    Route::resources([
+        'tournaments' => TournamentController::class,
+        'teams' => TeamController::class,
+        'games' => GameController::class,
+        'users' => UserController::class
+    ], ['as' => 'admin']);
 });
 

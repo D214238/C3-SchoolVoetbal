@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
     {
         // how big do you want your dataset. the number you type will multiply the data with that number
         $datasetSize = 3;
+        $tournamentsSize = 4;
 
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
@@ -63,7 +64,7 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        for($i=0; $i<$datasetSize; $i++) {
+        for($i=0; $i<$datasetSize*$tournamentsSize; $i++) {
             $this->call([
                 GameSeeder::class
             ]);

@@ -50,11 +50,24 @@ class AuthServiceProvider extends ServiceProvider
             return request()->user()->can($role);
         });
 
+        Blade::if('isnot', function($role){
+            return ! request()->user()->can($role);
+        });
+
         Blade::if('are', function($roles){
             $allowed = false;
             foreach ($roles as $role){
                 $allowed = (bool)request()->user()->can($role);
                 if ($allowed) {return true;}
+            }
+            return $allowed;
+        });
+
+        Blade::if('arenot', function($roles){
+            $allowed = true;
+            foreach ($roles as $role){
+                $allowed = (bool)request()->user()->can($role);
+                if ($allowed) {return false;}
             }
             return $allowed;
         });

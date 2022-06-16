@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Tournament;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Carbon;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Tournament>
@@ -20,7 +21,7 @@ class TournamentFactory extends Factory
     public function definition()
     {
         return [
-            'start_date' => $this->faker->date(),
+            'start_date' => Carbon::today()->subDays(rand(0, 365)),
         ];
     }
 }

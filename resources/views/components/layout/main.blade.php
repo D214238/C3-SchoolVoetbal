@@ -33,7 +33,7 @@
 <body class="font-sans antialiased">
 <div class="body-wrapper">
     @auth
-        @include('components.main.navigation')
+        <x-main.Navigation />
     @endauth
     <main @class(['main-content', 'main-grid' => Auth::check()])>
         {{ $slot }}

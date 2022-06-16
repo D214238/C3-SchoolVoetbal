@@ -60,4 +60,14 @@ class User extends Authenticatable
     {
         return $this->canAny($abilities, $arguments = []);
     }
+
+    public function isnot($abilities, $arguments = [])
+    {
+        return $this->cannot($abilities, $arguments = []);
+    }
+
+    public function arenot($abilities, $arguments = [])
+    {
+        return ! $this->canAny($abilities, $arguments = []);
+    }
 }

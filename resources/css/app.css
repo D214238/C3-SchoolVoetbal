@@ -62,6 +62,7 @@
     font-size: 18px;
     padding: 15px 35px;
     justify-content: space-between;
+    box-shadow: 0px 3px 3px rgba(0,0,0,0.20);
 }
 
 .nav-links{
@@ -93,14 +94,12 @@
         "dash-teams dash-image dash-image"
         "dash-tournament dash-tournament dash-team";
 }
-/*---[ Main:User Dashboard + Components ]---*/
+/*---[ Main: Dashboard + Components ]---*/
 .dash-teams{
     grid-area: dash-teams;
 }
 
 .dash-image{
-    width: 100%;
-    height: 100%;
     overflow: hidden;
     grid-area: dash-image;
 }
@@ -135,6 +134,11 @@ table, th, tr, td{
 
 .inner-table{
     height: 100%;
+    width: 100%;
+}
+
+.borright{
+    border-right: 2px solid var(--middle-gray);
 }
 
 .align-left{
@@ -163,6 +167,7 @@ table, th, tr, td{
 }
 .played-table{
     width:100%;
+    border-right: 1px solid var(--middle-gray);
 }
 
 .names-table{
@@ -170,7 +175,7 @@ table, th, tr, td{
     height: 100%;
 }
 
-.teams-tableheading-1{
+.teams-tableheading-1, .users-dash-tableheading-1{
     width: 12%;
 }
 
@@ -214,7 +219,7 @@ table, th, tr, td{
     border-right: none;
 }
 
-.dash-item{
+.dash-item, .component{
     border-radius: var(--radius);
     background-color: white;
     box-shadow: 1px 3px 3px rgba(0,0,0,0.15);
@@ -248,6 +253,72 @@ tr:nth-child(even){
     background-color: var(--light-gray) !important;
 }
 
+/*---[ Main: Tournaments + Components ]---*/
+.comp-tournaments{
+    position: relative;
+    grid-area: 1 / 1 / 3 / 4;
+    overflow-y: scroll;
+}
+.comp-tournament{
+    position: relative;
+    grid-area: 1 / 1 / 3 / 4;
+    overflow-y: scroll;
+}
+
+
+/*scrollbar stuff*/
+.comp-tournaments .table-title th:last-child, .comp-tournaments .admin-table-title th:last-child{
+    border-top-right-radius: 0;
+}
+
+.comp-tournaments .component {
+    border-bottom-right-radius: 0;
+}
+
+.comp-tournaments::-webkit-scrollbar{
+    width: 12px;
+}
+
+.comp-tournaments::-webkit-scrollbar-thumb{
+    background: var(--middle-gray);
+    border-radius: var(--radius);
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+}
+
+.comp-tournaments::-webkit-scrollbar-track{
+    background: var(--light-gray);
+    border-radius: var(--radius);
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+}
+
+.comp-tournaments table{
+    border-collapse: separate;
+}
+
+.comp-tournament table{
+    border-collapse: separate;
+}
+
+.comp-tournaments tr{
+    height: 5vh;
+}
+
+.comp-tour-link:hover{
+    cursor: pointer;
+    background-color: var(--selection);
+}
+
+.tournaments-header{
+    top: 0;
+    position: sticky;
+}
+
+.tour-message{
+    background-color: var(--light-gray);
+}
+
 /*===[ End Main ]===============================================================*/
 /*::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
 /*===[ Footer ]=================================================================*/
@@ -258,6 +329,7 @@ tr:nth-child(even){
     justify-content: space-between;
     padding: 15px 35px;
     height: 6vh;
+    box-shadow: 0px -3px 0px rgba(0,0,0,0.20);
 }
 /*===[ End Footer ]=============================================================*/
 /*::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/

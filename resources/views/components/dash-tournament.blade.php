@@ -1,5 +1,5 @@
-@props(['tournament'])
-<a href="{{ route('tournaments.show', $tournament['id']) }}" {{ $attributes->merge() }}>
+@props(['tournament', 'routeName'])
+<a href="{{ route($routeName, $tournament['id']) }}" {{ $attributes->merge() }}>
     <table class="main-table">
         <thead>
             <tr @class([

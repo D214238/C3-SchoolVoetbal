@@ -3,28 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Models\Game;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class GameController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $games = Game::today();
+        return view('user.games.games', [
+        'games' => $games
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        abort(403);
     }
 
     /**
@@ -38,26 +33,20 @@ class GameController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Game  $game
-     * @return \Illuminate\Http\Response
-     */
     public function show(Game $game)
     {
-        //
+        return view('user.games.game', [
+            'game' => $game
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Game  $game
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Game $game)
     {
-        //
+        if(Auth::user()->are(['admin', 'referee'])) {
+            return view('user.games.edit', [
+                'game' => $game
+            ]);
+        } else {abort(401);}
     }
 
     /**
