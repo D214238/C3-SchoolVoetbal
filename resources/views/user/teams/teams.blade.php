@@ -1,3 +1,3 @@
 <x-layout.main>
-    User Teams
+    Hello World
 </x-layout.main>
