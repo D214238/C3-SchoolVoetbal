@@ -1,3 +1,3 @@
 <x-layout.main>
-    Hello World
+    <x-teams :teams="$teams" class="component"/>
 </x-layout.main>
