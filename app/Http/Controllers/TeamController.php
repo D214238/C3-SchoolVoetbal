@@ -24,7 +24,9 @@ class TeamController extends Controller
      */
     public function create()
     {
-        //
+        if(Auth::user()->is('admin')){
+            return view('user.teams.create');
+        }else {abort(401);}
     }
 
     /**
@@ -33,16 +35,18 @@ class TeamController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
-        //
+        $requist->validate([
+            'name'=> 'required'
+        ]);
+        $team->create($request->all());
+        return redirect()->route('teams.index')->with('team succesful created');
     }
-
     public function show(Team $team)
     {
-        return view('user.teams.team', [
-            'team' => $team
-        ]);
+        return view('teams.show', compact('team'));
     }
 
     public function edit(Team $team)
@@ -63,7 +67,11 @@ class TeamController extends Controller
      */
     public function update(Request $request, Team $team)
     {
-        //
+        $request->validate([
+            'name'=> 'required'
+        ]);
+        $team->update($request->all());
+        return redirect()->route('teams.index')->with('team succesful updated');
     }
 
     /**
@@ -74,6 +82,7 @@ class TeamController extends Controller
      */
     public function destroy(Team $team)
     {
-        //
+        $team->delete();
+        return redirect()->route('teams.index')->with('team succesful deleted');
     }
 }
