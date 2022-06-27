@@ -253,6 +253,18 @@ tr:nth-child(even){
     background-color: var(--light-gray) !important;
 }
 
+.comp-game{
+    position: relative;
+    grid-area: 1 / 1 / 3 / 4;
+    overflow-y: scroll;
+}
+
+.comp-games{
+    position: relative;
+    grid-area: 1 / 1 / 3 / 4;
+    overflow-y: scroll;
+}
+
 /*---[ Main: Tournaments + Components ]---*/
 .comp-tournaments{
     position: relative;

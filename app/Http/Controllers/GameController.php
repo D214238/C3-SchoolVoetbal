@@ -11,7 +11,7 @@ class GameController extends Controller
 {
     public function index()
     {
-        $games = Game::today();
+        $games = Game::all();
         return view('user.games.games', [
         'games' => $games
         ]);

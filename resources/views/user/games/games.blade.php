@@ -1,3 +1,3 @@
 <x-layout.main>
-    User games
+    <x-games :games="$games" class="component"/>
 </x-layout.main>
