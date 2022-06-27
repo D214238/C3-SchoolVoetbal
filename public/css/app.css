@@ -92,6 +92,9 @@ a {
 /*
 Add the correct font weight in Edge and Safari.
 */
+a.btn.btn-success {
+  background-color: #00F2FF;
+}
 
 b,
 strong {
