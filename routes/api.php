@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 Use App\Models\Game;
 Use App\Models\Team;
+use Symfony\Component\Console\Input\Input;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -51,5 +52,8 @@ Route::get('results', function() {
         $results[] = $result;
     }
     return $results;
+});
 
+Route::get('match', function (Request $request) {
+    return Game::where('id', $request->get("match_id"))->get();
 });
