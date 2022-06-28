@@ -21,7 +21,7 @@
                 <td>{{ $team['created_at'] }}</td>
                 <td>{{ $team['updated_at'] }}</td>
                 <td>{{ $team['creator_id'] }}</td>
-                <td><a class="btn btn-success" href="{{ route('teams.create') }}">Edit Team</a></td>
+                <a href = "{{ route ('team.edit', $team->id) }}"><button type = "submit">Edit</button></a>
                 <td><a class="btn btn-success" href="{{ route('teams.create') }}">Delete Team</a></td>
             </tr>
         @endforeach

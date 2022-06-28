@@ -54,7 +54,7 @@ class TeamController extends Controller
             return view('user.teams.edit', [
                 'team' => $team
             ]);
-        } else {abort(401);}
+        } else {abort(404);}
     }
 
     /**

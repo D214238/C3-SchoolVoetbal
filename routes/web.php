@@ -62,3 +62,4 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'is:admin']], functi
     ], ['as' => 'admin']);
 });
 
+Route::get('/teams/{id}', [TeamController::class, 'edit'])->name('teams.edit');
