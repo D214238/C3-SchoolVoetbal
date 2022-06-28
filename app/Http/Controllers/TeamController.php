@@ -38,11 +38,10 @@ class TeamController extends Controller
 
     public function store(Request $request)
     {
-        $requist->validate([
-            'name'=> 'required'
-        ]);
-        $team->create($request->all());
-        return redirect()->route('teams.index')->with('team succesful created');
+        $team = new team();
+        $team->name = request->name;
+        $team->save();
+        return redirect()->route(route: 'team.index');
     }
     public function show(Team $team)
     {
