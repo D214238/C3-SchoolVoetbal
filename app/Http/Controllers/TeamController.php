@@ -33,7 +33,7 @@ class TeamController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
 
     public function store(Request $request)
@@ -56,11 +56,11 @@ class TeamController extends Controller
 
     public function edit(Request $request, Team $team)
     {
-//        if(Auth::user()->is('admin') || $team->creator->first()->id == Auth::user()->id) {
+        if(Auth::user()->is('admin') || $team->creator->first()->id == Auth::user()->id) {
             return view('user.teams.edit', [
                 'team' => $team
             ]);
-//        } else {abort(401);}
+        } else {abort(401);}
     }
 
     /**

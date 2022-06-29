@@ -54,13 +54,20 @@ class GameController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Game  $game
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Game $game)
     {
-        //
-    }
+        //Validate
+        $request->validate([
+            'name' => 'required|min:3',
+        ]);
 
+        $game->name = $request->name;
+        $game->save();
+        $request->session()->flash('message', 'Successfully modified the game!');
+        return redirect()->route('admin.games.index');
+    }
     /**
      * Remove the specified resource from storage.
      *
