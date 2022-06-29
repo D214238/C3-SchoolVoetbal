@@ -8,10 +8,13 @@ use Illuminate\Support\Facades\Auth;
 
 class TeamController extends Controller
 {
+
     public function index()
     {
-        $teams = team::all();
-        return view ('user.teams.teams')->with('teams', $teams);
+        $teams = Team::with(['creator', 'members'])->get();
+        return view('user.teams.teams', [
+            'teams' => $teams
+        ]);
     }
 
     /**
@@ -21,7 +24,9 @@ class TeamController extends Controller
      */
     public function create()
     {
-        return view ('teams.create');
+        if(Auth::user()->is('admin')){
+            return view('user.teams.create');
+        }else {abort(401);}
     }
 
     /**
@@ -33,20 +38,29 @@ class TeamController extends Controller
 
     public function store(Request $request)
     {
-        $input = $request->all();
-        Team::create($input);
-        return redirect('team')->with('message', 'team Added!');
+        $request->validate([
+            'name'=> 'required'
+        ]);
+        $team = new Team();
+        $team->create($request->all());
+        return redirect()->route('teams.index')->with('team succesful created');
     }
-    public function show($id)
+    public function show(Team $team)
     {
-        $team = Team::find($id);
-        return view('teams.show')->with('teams', $team);
+
+            return view('user.teams.team', [
+                'team' => $team
+            ]);
+
     }
 
-    public function edit($id)
+    public function edit(Request $request, Team $team)
     {
-        $team = Team::find($id);
-        return view('teams.edit')->with('teams', $team);
+//        if(Auth::user()->is('admin') || $team->creator->first()->id == Auth::user()->id) {
+            return view('user.teams.edit', [
+                'team' => $team
+            ]);
+//        } else {abort(401);}
     }
 
     /**
@@ -54,25 +68,31 @@ class TeamController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Team  $team
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Team $team)
     {
-        $team = Team::find($id);
-        $input = $request->all();
-        $team->update($input);
-        return redirect('team')->with('message', 'team Updated!');
+        //Validate
+        $request->validate([
+            'name' => 'required|min:3',
+        ]);
+
+        $team->name = $request->name;
+        $team->save();
+        $request->session()->flash('message', 'Successfully modified the team!');
+        return redirect('teams.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Team  $team
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Team $team)
+    public function destroy(Request $request, Team $team)
     {
-        Team::destroy($id);
-        return redirect('team')->with('message', 'Team deleted!');
+        $team->delete();
+        $request->session()->flash('message', 'Successfully deleted the team!');
+        return redirect('teams.index');
     }
 }
