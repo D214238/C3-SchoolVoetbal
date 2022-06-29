@@ -21,13 +21,9 @@
                 <td>{{ $team['created_at'] }}</td>
                 <td>{{ $team['updated_at'] }}</td>
                 <td>{{ $team['creator_id'] }}</td>
-                <td>
-                    <form action="{{url('admin/teams', [$team])}}" method="POST">
-                        <input type="hidden" name="_method" value="DELETE">
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <input type="submit" class="btn btn-danger" value="Delete"/>
-                    </form>
-                </td>
+                <td><a href="{{ URL::to('admin/teams/' . $team->id . '/edit') }}">
+                        <button type="button" class="btn btn-warning">Edit</button>
+                    </a>&nbsp;</td>
             </tr>
             @endforeach
             </tbody>
