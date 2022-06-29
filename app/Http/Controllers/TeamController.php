@@ -78,6 +78,7 @@ class TeamController extends Controller
         ]);
 
         $team->name = $request->name;
+        $team->creator_id = $request->creator_id;
         $team->save();
         $request->session()->flash('message', 'Successfully modified the team!');
         return redirect()->route('admin.teams.index');
