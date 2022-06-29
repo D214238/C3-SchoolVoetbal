@@ -8,13 +8,10 @@ use Illuminate\Support\Facades\Auth;
 
 class TeamController extends Controller
 {
-
     public function index()
     {
-        $teams = Team::with(['creator', 'members'])->get();
-        return view('user.teams.teams', [
-            'teams' => $teams
-        ]);
+        $teams = team::all();
+        return view ('user.teams.team')->with('teams', $teams);
     }
 
     /**
@@ -24,9 +21,7 @@ class TeamController extends Controller
      */
     public function create()
     {
-        if(Auth::user()->is('admin')){
-            return view('user.teams.create');
-        }else {abort(401);}
+        return view ('teams.create');
     }
 
     /**
@@ -38,23 +33,20 @@ class TeamController extends Controller
 
     public function store(Request $request)
     {
-        $team = new team();
-        $team->name = request->name;
-        $team->save();
-        return redirect()->route(route: 'team.index');
+        $input = $request->all();
+        Team::create($input);
+        return redirect('team')->with('message', 'team Added!');
     }
-    public function show(Team $team)
+    public function show($id)
     {
-        return view('teams.show', compact('team'));
+        $team = Team::find($id);
+        return view('teams.show')->with('teams', $team);
     }
 
-    public function edit(Team $team)
+    public function edit($id)
     {
-        if(Auth::user()->is('admin') || $team->creator->first()->id == Auth::user()->id) {
-            return view('user.teams.edit', [
-                'team' => $team
-            ]);
-        } else {abort(404);}
+        $team = Team::find($id);
+        return view('teams.edit')->with('teams', $team);
     }
 
     /**
@@ -64,13 +56,12 @@ class TeamController extends Controller
      * @param  \App\Models\Team  $team
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Team $team)
+    public function update(Request $request, $id)
     {
-        $request->validate([
-            'name'=> 'required'
-        ]);
-        $team->update($request->all());
-        return redirect()->route('teams.index')->with('team succesful updated');
+        $team = Team::find($id);
+        $input = $request->all();
+        $team->update($input);
+        return redirect('team')->with('message', 'team Updated!');  
     }
 
     /**
@@ -81,7 +72,7 @@ class TeamController extends Controller
      */
     public function destroy(Team $team)
     {
-        $team->delete();
-        return redirect()->route('teams.index')->with('team succesful deleted');
+        Team::destroy($id);
+        return redirect('team')->with('message', 'Team deleted!');
     }
 }

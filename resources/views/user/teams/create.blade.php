@@ -1,12 +1,16 @@
+@extends('teams.layout')
 @section('content')
-
-<div class="row">
-    <div class="col-lg-12 margin-tb">
-        <div class="pull-left">
-            <h2>Add New Team</h2>
-        </div>
-        <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('Teams.index') }}"> Back</a>
-        </div>
-    </div>
+<div class="card">
+  <div class="card-header">Teams Page</div>
+  <div class="card-body">
+      
+      <form action="{{ url('student') }}" method="post">
+        {!! csrf_field() !!}
+        <label>Name</label></br>
+        <input type="text" name="name" id="name" class="form-control"></br>
+        <input type="submit" value="Save" class="btn btn-success"></br>
+    </form>
+  
+  </div>
 </div>
+@stop

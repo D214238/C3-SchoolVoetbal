@@ -10,6 +10,10 @@ class Team extends Model
 {
     use HasFactory;
 
+    protected $table = 'teams';
+    protected $primaryKey = 'id';
+    protected $fillable = ['name'];
+
     public function creator()
     {
         return $this->belongsTo(User::class);
