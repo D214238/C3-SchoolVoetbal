@@ -22,7 +22,7 @@
                 <td>{{ $team['updated_at'] }}</td>
                 <td>{{ $team['creator_id'] }}</td>
                 <td>
-                    <form method="POST" action="{{ url('/student' . '/' . $team->id) }}" accept-charset="UTF-8" style="display:inline">
+                    <form method="POST" action="{{ url('/admin/teams' . '/' . $team->id) }}" accept-charset="UTF-8" style="display:inline">
                         {{ method_field('DELETE') }}
                         {{ csrf_field() }}
                         <button type="submit" class="btn btn-danger btn-sm" title="Delete Team" onclick="return confirm(&quot;Confirm delete?&quot;)">
