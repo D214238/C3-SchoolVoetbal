@@ -80,7 +80,7 @@ class TeamController extends Controller
         $team->name = $request->name;
         $team->save();
         $request->session()->flash('message', 'Successfully modified the team!');
-        return redirect('teams.index');
+        return redirect()->route('admin.teams.index');
     }
 
     /**
