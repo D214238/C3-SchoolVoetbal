@@ -1,16 +1,14 @@
-@extends('teams.layout')
-@section('content')
-<div class="card">
-  <div class="card-header">Teams Page</div>
-  <div class="card-body">
-      
-      <form action="{{ url('student') }}" method="post">
+<div {{ $attributes->merge(['class' => 'comp-team']) }}>
+
+    <form action="{{ url('admin/teams') }}" method="post">
         {!! csrf_field() !!}
-        <label>Name</label></br>
-        <input type="text" name="name" id="name" class="form-control"></br>
-        <input type="submit" value="Save" class="btn btn-success"></br>
+        @method("POST")
+        <input type="hidden" name="id" id="id" value="" id="id" />
+        <label>Name</label>
+        <input type="text" name="name" id="name" value="" class="form-control"><br/>
+        <label>Creator Id</label>
+        <input type="text" name="name" id="creator_id" value="" class="form-control"><br/>
+        <br/>
+        <button type="submit" class="btn btn-success">Update</button>
     </form>
-  
-  </div>
 </div>
-@stop
