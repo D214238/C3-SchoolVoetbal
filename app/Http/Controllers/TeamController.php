@@ -11,7 +11,7 @@ class TeamController extends Controller
     public function index()
     {
         $teams = team::all();
-        return view ('user.teams.team')->with('teams', $teams);
+        return view ('user.teams.teams')->with('teams', $teams);
     }
 
     /**
@@ -61,7 +61,7 @@ class TeamController extends Controller
         $team = Team::find($id);
         $input = $request->all();
         $team->update($input);
-        return redirect('team')->with('message', 'team Updated!');  
+        return redirect('team')->with('message', 'team Updated!');
     }
 
     /**
