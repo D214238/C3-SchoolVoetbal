@@ -1,9 +1,7 @@
 @props(['games'])
-
 <div {{ $attributes->merge(['class' => 'comp-games']) }}>
-
     <table class="main-table">
-        <thead class="teams-header">
+        <thead class="table-header">
             <tr>
                 <th>id</th>
                 <th>team1_score</th>
@@ -25,8 +23,5 @@
             </tr>
             @endforeach
         </tbody>
-
     </table>
-
-
 </div>

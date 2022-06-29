@@ -1403,6 +1403,16 @@ tr:nth-child(even){
     grid-area: 1 / 1 / 3 / 4;
     overflow-y: scroll;
 }
+.comp-team{
+    position: relative;
+    grid-area: 1 / 1 / 3 / 4;
+    overflow-y: scroll;
+}
+.comp-teams{
+    position: relative;
+    grid-area: 1 / 1 / 3 / 4;
+    overflow-y: scroll;
+}
 /*---[ Main: Tournaments + Components ]---*/
 .comp-tournaments{
     position: relative;
