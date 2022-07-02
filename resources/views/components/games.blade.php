@@ -9,6 +9,7 @@
                 <th>finished</th>
                 <th>is_playing</th>
                 <th>start_time</th>
+                <th>edit</th>
             </tr>
         </thead>
         <tbody>
@@ -20,6 +21,10 @@
                 <td>{{ $game['finished'] }}</td>
                 <td>{{ $game['is_playing'] }}</td>
                 <td>{{ $game['start_time'] }}</td>
+                <td><a href="{{ URL::to('admin/games/' . $game->id . '/edit') }}">
+                        <button type="button" class="btn btn-warning">Edit</button>
+                    </a>&nbsp;
+                </td>
             </tr>
             @endforeach
         </tbody>

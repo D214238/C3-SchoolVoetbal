@@ -23,7 +23,8 @@
                 <td>{{ $team['creator_id'] }}</td>
                 <td><a href="{{ URL::to('admin/teams/' . $team->id . '/edit') }}">
                         <button type="button" class="btn btn-warning">Edit</button>
-                    </a>&nbsp;</td>
+                    </a>&nbsp;
+                </td>
             </tr>
             @endforeach
             </tbody>

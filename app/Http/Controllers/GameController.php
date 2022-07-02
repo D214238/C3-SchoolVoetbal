@@ -19,7 +19,9 @@ class GameController extends Controller
 
     public function create()
     {
-        abort(403);
+        if(Auth::user()->is('admin')){
+            return view('user.games.create');
+        }else {abort(401);}
     }
 
     /**
@@ -30,7 +32,12 @@ class GameController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'=> 'required'
+        ]);
+        $game = new Game();
+        $game->create($request->all());
+        return redirect()->route('teams.games')->with('game succesful created');
     }
 
     public function show(Game $game)
@@ -74,8 +81,10 @@ class GameController extends Controller
      * @param  \App\Models\Game  $game
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Game $game)
+    public function destroy(Request $request, Game $game)
     {
-        //
+        $game->delete();
+        $request->session()->flash('message', 'Successfully deleted the team!');
+        return redirect()->route('admin.games.index');
     }
 }
