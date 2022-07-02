@@ -94,6 +94,6 @@ class TeamController extends Controller
     {
         $team->delete();
         $request->session()->flash('message', 'Successfully deleted the team!');
-        return redirect('teams.index');
+        return redirect()->route('admin.teams.index');
     }
 }
