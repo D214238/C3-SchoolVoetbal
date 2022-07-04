@@ -42,6 +42,30 @@
   display: block;
   margin-left: 30px;
 }
+
+.comp-game form {
+  background-color: rgb(213, 213, 213);
+  padding-bottom: 500px;
+}
+
+.comp-game form label {
+  font-size: 30px;
+  margin-left: 30px;
+}
+
+.comp-game form button {
+  font-size: 30px;
+  background-color: rgb(169, 169, 169);
+  margin-left: 30px;
+  color: rgb(0, 0, 0);
+  padding: 5px 10px;
+}
+
+.comp-game form input {
+  background-color: rgb(233, 238, 239);
+  display: block;
+  margin-left: 30px;
+}
 /*
 1. Use a consistent sensible line-height in all browsers.
 2. Prevent adjustments of font size after orientation changes in iOS.
@@ -115,6 +139,11 @@ a {
 /*
 Add the correct font weight in Edge and Safari.
 */
+a.btn.btn-success.btn-sm {
+  background-color: #00FF59;
+  color: white;
+  font-size: 25px;
+}
 
 b,
 strong {
@@ -197,6 +226,13 @@ textarea {
 Remove the inheritance of text transform in Edge and Firefox.
 */
 
+input.btn.btn-danger {
+  background-color: #000000; 
+  color: #ffffff; 
+  font-size: 30px; 
+  padding: 5px 15px;
+}
+
 button,
 select {
   text-transform: none;
@@ -219,6 +255,12 @@ button,
 /*
 Use the modern Firefox focus style for all focusable elements.
 */
+button.btn.btn-warning {
+  background-color: #28C2FF;
+  color: white;
+  font-size: 25px;
+  padding: 4px 10px;
+}
 
 :-moz-focusring {
   outline: auto;
