@@ -9,6 +9,6 @@
         <label>Creator Id</label>
         <input type="text" name="name" id="creator_id" value="" class="form-control"><br/>
         <br/>
-        <button type="submit" class="btn btn-success">Update</button>
+        <button type="submit" class="btn btn-success">Create</button>
     </form>
 </div>

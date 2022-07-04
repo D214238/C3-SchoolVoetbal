@@ -11,7 +11,7 @@
                 <th>create_at</th>
                 <th>update_at</th>
                 <th>creator_id</th>
-                <th>Delete</th>
+                <th>Edit</th>
             </tr>
             @foreach($teams as $team)
             </thead>
