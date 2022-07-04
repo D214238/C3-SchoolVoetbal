@@ -3,12 +3,12 @@
 <div {{ $attributes->merge(['class' => 'comp-game']) }}>
 
     <form action="{{ url('admin/games/' .$game->id) }}" method="post">
-        {!! csrf_field() !!}
-        @method("PATCH")
+        @csrf
+        @method("PUT")
         <input type="hidden" name="id" id="id" value="{{$game->id}}"  />
 
         <label for="team1_score">team1_score</label>
-        <input type="text" name="name" id="team1_score" value="{{$game->team1_score}}" class="form-control"><br/
+        <input type="text" name="name" id="team1_score" value="{{$game->team1_score}}" class="form-control"><br/>
 
         <label for="team2_score">team2_score</label>
         <input type="text" name="name" id="team2_score" value="{{$game->team2_score}}" class="form-control"><br/>

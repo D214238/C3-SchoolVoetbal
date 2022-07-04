@@ -77,10 +77,8 @@ class TeamController extends Controller
             'name' => 'required|min:3',
         ]);
 
-        $team->name = $request->name;
-        $team->creator_id = $request->creator_id;
-        $team->save();
-        $request->session()->flash('message', 'Successfully modified the team!');
+        $team->update($request->all());
+
         return redirect()->route('admin.teams.index');
     }
 
@@ -94,6 +92,6 @@ class TeamController extends Controller
     {
         $team->delete();
         $request->session()->flash('message', 'Successfully deleted the team!');
-        return redirect()->route('admin.teams.index');
+        return redirect()->route('admin.teams.index')->with("Team is verwijderd");
     }
 }
