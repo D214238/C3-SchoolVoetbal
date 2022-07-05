@@ -56,5 +56,24 @@ Route::get('results', function() {
 });
 
 Route::get('match', function (Request $request) {
-    return Game::where('id', $request->get("match_id"))->get();
+    $game = Game::where('id', $request->get("match_id"))->get();
+    $result = [];
+    $result["id"] = $game[0]['id'];
+
+    $result["finished"] = $game[0]['finished'];
+    $result["is_playing"] = $game[0]['is_playing'];
+    $result["team1_id"] = $game[0]['team1_id'];
+    $result["team1_name"] = Team::where('id',$result["team1_id"])->get("name")[0]['name'];
+    $result["team2_id"] = $game[0]['team2_id'];
+    $result["team2_name"] = Team::where('id',$result["team2_id"])->get("name")[0]['name'];
+    $result["team1_score"] = $game[0]['team1_score'];
+    $result["team2_score"] = $game[0]['team2_score'];
+    if ($result["team1_score"] > $result["team2_score"]) $result["winner_id"] = $game[0]['team1_id'];
+    else $result["winner_id"] = $result["team2_id"];
+    $result["start_time"] = $game[0]['start_time'];
+    $result["created_at"] = $game[0]['created_at'];
+    $result["updated_at"] = $game[0]['updated_at'];
+    $result["tournament_id"] = $game[0]['tournament_id'];
+    $result["field_id"] = $game[0]['field_id'];
+    return $result;
 });
