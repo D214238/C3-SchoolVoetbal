@@ -27,6 +27,7 @@ Route::get('matches', function() {
     foreach ($games as $game) {
         $result = [];
         $result["id"] = $game['id'];
+        $result["finished"] = $game['finished'];
         $result["team1_id"] = $game['team1_id'];
         $result["team1_name"] = Team::where('id',$result["team1_id"])->get("name")[0]['name'];
         $result["team2_id"] = $game['team2_id'];
