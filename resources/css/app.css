@@ -279,6 +279,23 @@ tr:nth-child(even){
 }
 
 
+.comp-team form label {
+    font-size: 30px;
+    margin-left: 30px;
+}
+
+.comp-team form button {
+    font-size: 30px;
+    margin-left: 30px;
+    color: blue;
+    padding: 5px 10px;
+}
+
+.comp-team form input {
+    display: block;
+    margin-left: 30px;
+}
+
 /*---[ Main: Tournaments + Components ]---*/
 .comp-tournaments{
     position: relative;
